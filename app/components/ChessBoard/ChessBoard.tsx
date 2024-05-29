@@ -8,9 +8,19 @@ export default function ChessBoard(){
 
     let board = [];
 
-    for(let i = 0; i<horizontalAxis.length; i++){
-        for(let j = 0; j<verticalAxis.length; j++){
-            board.push(<span> {horizontalAxis[i]}{verticalAxis[j]}</span>)
+    for(let i = verticalAxis.length - 1; i >= 0; i--){
+
+        for(let j = 0; j<horizontalAxis.length; j++){
+
+            const number = j + i;
+            if(number % 2 === 0){
+                board.push(<div className="tile black-tile"> [{horizontalAxis[j]}{verticalAxis[i]}]</div>)
+            }else {
+                board.push(<div className="tile white-tile"> [{horizontalAxis[j]}{verticalAxis[i]}]</div>)
+
+            }
+
+           
         }
     }
 
