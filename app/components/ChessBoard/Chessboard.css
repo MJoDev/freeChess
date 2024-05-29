@@ -7,15 +7,5 @@
     background-color: blue;
 }
 
-#chessboard .tile{
-    width: 75px;
-    height: 75px;
-}
 
-#chessboard .white-tile{
-    background-color: #FFFFFF;
-}
 
-#chessboard .black-tile{
-    background-color: #99BDCD;
-}
