@@ -20,6 +20,27 @@ for(let i = 0; i < 8; i++){
     pieces.push({image: 'icons/WhitePawn.png', x:i, y:1});
 }
 
+pieces.push({image: 'icons/BlackRook.png', x:0, y:7})
+pieces.push({image: 'icons/BlackRook.png', x:7, y:7})
+pieces.push({image: 'icons/WhiteRook.png', x:0, y:0})
+pieces.push({image: 'icons/WhiteRook.png', x:7, y:0})
+
+pieces.push({image: 'icons/BlackKnight.png', x:1, y:7})
+pieces.push({image: 'icons/BlackKnight.png', x:6, y:7})
+pieces.push({image: 'icons/WhiteKnight.png', x:1, y:0})
+pieces.push({image: 'icons/WhiteKnight.png', x:6, y:0})
+
+pieces.push({image: 'icons/BlackBishop.png', x:2, y:7})
+pieces.push({image: 'icons/BlackBishop.png', x:5, y:7})
+pieces.push({image: 'icons/WhiteBishop.png', x:2, y:0})
+pieces.push({image: 'icons/WhiteBishop.png', x:5, y:0})
+
+pieces.push({image: 'icons/BlackKing.png', x:4, y:7})
+pieces.push({image: 'icons/WhiteKing.png', x:3, y:0})
+
+pieces.push({image: 'icons/BlackQueen.png', x:3, y:7})
+pieces.push({image: 'icons/WhiteQueen.png', x:4, y:0})
+
 
 
 export default function ChessBoard(){
