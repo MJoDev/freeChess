@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import './Chessboard.css';
 import Tile from '../Tile/Tile'
@@ -10,6 +12,20 @@ interface Piece{
 
 const pieces: Piece[] = [];
 
+for(let p = 0; p<2; p++){
+    const type = (p === 0) ? "Black" : "White";
+    const y = (p === 0) ? 7 : 0;
+
+    pieces.push({image: `icons/${type}Rook.png`, x:0, y})
+    pieces.push({image: `icons/${type}Rook.png`, x:7, y})
+    pieces.push({image: `icons/${type}Knight.png`, x:1, y})
+    pieces.push({image: `icons/${type}Knight.png`, x:6, y})
+    pieces.push({image: `icons/${type}Bishop.png`, x:2, y})
+    pieces.push({image: `icons/${type}Bishop.png`, x:5, y})
+    pieces.push({image: `icons/${type}King.png`, x:4, y})
+    pieces.push({image: `icons/${type}Queen.png`, x:3, y})
+}
+
 const verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"]
 const horizontalAxis = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 
@@ -20,28 +36,19 @@ for(let i = 0; i < 8; i++){
     pieces.push({image: 'icons/WhitePawn.png', x:i, y:1});
 }
 
-pieces.push({image: 'icons/BlackRook.png', x:0, y:7})
-pieces.push({image: 'icons/BlackRook.png', x:7, y:7})
-pieces.push({image: 'icons/WhiteRook.png', x:0, y:0})
-pieces.push({image: 'icons/WhiteRook.png', x:7, y:0})
 
-pieces.push({image: 'icons/BlackKnight.png', x:1, y:7})
-pieces.push({image: 'icons/BlackKnight.png', x:6, y:7})
-pieces.push({image: 'icons/WhiteKnight.png', x:1, y:0})
-pieces.push({image: 'icons/WhiteKnight.png', x:6, y:0})
+function grabPiece(e: React.MouseEvent){
+    const element = e.target as HTMLElement;
 
-pieces.push({image: 'icons/BlackBishop.png', x:2, y:7})
-pieces.push({image: 'icons/BlackBishop.png', x:5, y:7})
-pieces.push({image: 'icons/WhiteBishop.png', x:2, y:0})
-pieces.push({image: 'icons/WhiteBishop.png', x:5, y:0})
+    if(element.classList.contains("chess-piece")){
+        console.log(e)
 
-pieces.push({image: 'icons/BlackKing.png', x:4, y:7})
-pieces.push({image: 'icons/WhiteKing.png', x:3, y:0})
+        const x = e.clientX;
+        const y = e.clientY;
+        element.style.position = 'absolute';
+    }
 
-pieces.push({image: 'icons/BlackQueen.png', x:3, y:7})
-pieces.push({image: 'icons/WhiteQueen.png', x:4, y:0})
-
-
+}
 
 export default function ChessBoard(){
 
@@ -59,10 +66,11 @@ export default function ChessBoard(){
                 }
             });
 
-            board.push(<Tile number={number} image={image}/>)
+            board.push(<Tile key={verticalAxis[i] + horizontalAxis[j]}  number={number} image={image}/>)
            
         }
     }
 
-    return (<div id="chessboard">{board}</div>)
+    return (<>
+    <div  onMouseDown={(e) => grabPiece(e)} id="chessboard">{board}</div></>)
 }
