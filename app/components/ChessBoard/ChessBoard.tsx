@@ -10,6 +10,8 @@ interface Piece{
     y: number;
 }
 
+let activePiece: HTMLElement | null = null;
+
 const pieces: Piece[] = [];
 
 for(let p = 0; p<2; p++){
@@ -41,11 +43,14 @@ function grabPiece(e: React.MouseEvent){
     const element = e.target as HTMLElement;
 
     if(element.classList.contains("chess-piece")){
-        console.log(e)
 
-        const x = e.clientX;
-        const y = e.clientY;
+        const x = e.clientX -35;
+        const y = e.clientY -35;
         element.style.position = 'absolute';
+        element.style.left = `${x}px`;
+        element.style.top = `${y}px`;
+
+        activePiece = element;
     }
 
 }
@@ -71,6 +76,28 @@ export default function ChessBoard(){
         }
     }
 
+    function movePiece(e: React.MouseEvent) {
+
+
+        if(activePiece){
+            const x = e.clientX -35;
+            const y = e.clientY -35;
+            activePiece.style.position = 'absolute';
+            activePiece.style.left = `${x}px`;
+            activePiece.style.top = `${y}px`;
+        }
+    }
+
+    function dropPiece(e: React.MouseEvent){
+        if(activePiece){
+            activePiece = null;
+        }
+    }
+
     return (<>
-    <div  onMouseDown={(e) => grabPiece(e)} id="chessboard">{board}</div></>)
+    <div 
+    onMouseMove={(e) => movePiece(e)}
+    onMouseDown={(e) => grabPiece(e)} 
+    onMouseUp={(e) => dropPiece(e)}
+    id="chessboard">{board}</div></>)
 }
