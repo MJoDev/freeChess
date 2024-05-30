@@ -1,3 +1,5 @@
+import '@fontsource-variable/onest';
+
 export const metadata = {
   title: 'Free Chess',
   description: 'A free chess made with NextJs',
