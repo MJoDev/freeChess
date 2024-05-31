@@ -4,11 +4,12 @@
     width: 75px;
     height: 75px;
 }
+
 .white-tile{
-    background-color: #FFFFFF;
+    background-color: #F0D8B6;
 }
 .black-tile{
-    background-color: #99BDCD;
+    background-color: #B48764;
 }
 
 .tile img{
